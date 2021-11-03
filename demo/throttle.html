@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    throttle:<input id="throttle" type="text" />
+    <script>
+      //模拟一段ajax请求
+      function ajax(content) {
+        console.log('ajax request ' + content);
+      }
+
+      function throttle(fn, wait) {
+        let curTime = Date.now();
+        return function () {
+          let context = this;
+          let args = arguments;
+          let nowTime = Date.now();
+          console.log(nowTime - curTime);
+          if (nowTime - curTime >= wait) {
+            curTime = Date.now();
+            fn.apply(context, args);
+          }
+        };
+      }
+
+      let inputa = document.getElementById('throttle');
+      let mythrottle = throttle(ajax, 500);
+      inputa.addEventListener('keyup', function (e) {
+        // ajax(e.target.value);
+        mythrottle(e.target.value);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+# 应用
+# ci/cd build
+# docker build
+# docker.yml
+
+# 把dist文件拷贝到物理机器上
+
+layer cache的作用 copy文件的时候没有修改的文件可以复用
+
+多阶段构建是怎么配置的
