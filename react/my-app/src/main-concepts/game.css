@@ -1,0 +1,30 @@
+.game {
+  display: flex;
+  justify-content: center;
+  padding-top: 300px;
+}
+.border-box .border-item {
+  display: flex;
+}
+.border-box .border-item button {
+  /* margin: 10px; */
+  width: 100px;
+  height: 100px;
+  font-size: 30px;
+}
+
+.player {
+  font-size: 30px;
+  color: green;
+  margin-bottom: 10px;
+}
+
+.player-name {
+  color: red;
+  font-weight: 600;
+}
+
+.restart {
+  height: 30px;
+  margin-top: 20px;
+}
