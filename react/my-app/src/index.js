@@ -14,9 +14,11 @@ import './index.css';
 // import WarningBanner from './main-concepts/WarningBanner';
 // import FilterableProductTable from './main-concepts/FilterableProductTable';
 // import ContextTest from './advanced-guides/context/my-context';
-import App from './advanced-guides/context/my-contexts';
-
-import Theme from './advanced-guides/context/theme.js';
+// import App from './advanced-guides/context/my-contexts';
+// import Theme from './advanced-guides/context/theme.js';
+// import App from './advanced-guides/error-boundary';
+// import App from './advanced-guides/hoc';
+import App from './advanced-guides/portals/modal';
 
 import reportWebVitals from './reportWebVitals';
 ReactDOM.render(
