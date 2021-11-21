@@ -18,7 +18,11 @@ import './index.css';
 // import Theme from './advanced-guides/context/theme.js';
 // import App from './advanced-guides/error-boundary';
 // import App from './advanced-guides/hoc';
-import App from './advanced-guides/portals/modal';
+// import App from './advanced-guides/portals/modal';
+// import App from './advanced-guides/refs';
+// import App from './advanced-guides/render-props/MouseTracker';
+// import App from './advanced-guides/render-props/MouseTracker3';
+import App from './hooks';
 
 import reportWebVitals from './reportWebVitals';
 ReactDOM.render(
