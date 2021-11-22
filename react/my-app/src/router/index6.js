@@ -1,8 +1,8 @@
 import React from "react";
-import { Routes, Route, NavLink, Link, Outlet, useParams, useSearchParams, useLocation } from "react-router-dom";
+import { Routes, Route, NavLink, Link, Outlet, useParams } from "react-router-dom";
 import { getInvoices, getInvoice } from "./data";
 
-// useLocation
+// Index routes 当父路由匹配子路由没有匹配的时候默认展示的路由
 export default function App() {
     return (
         <Routes>
@@ -60,8 +60,6 @@ function Expenses() {
 
 function Invoices() {
     let invoices = getInvoices();
-    let [searchParams, setSearchParams] = useSearchParams();
-    console.log(searchParams);
     return (
         <div style={{display: 'flex'}}>
             <nav
@@ -70,26 +68,8 @@ function Invoices() {
                 padding: "1rem"
             }}
             >
-                <input 
-                    value={searchParams.get("filter") || ""}
-                    // 这里的filter可以用任何字段
-                    onChange={event => {
-                        let filter = event.target.value;
-                        if(filter) {
-                            setSearchParams({filter})
-                        } else {
-                            setSearchParams({})
-                        }
-                    }}
-                />
-                {invoices
-                    .filter(invoice => {
-                        let filter = searchParams.get("filter");
-                        if (!filter) return true;
-                        let name = invoice.name.toLowerCase();
-                        return name.startsWith(filter.toLowerCase());
-                    })
-                    .map((invoice) => (
+                {
+                    invoices.map((invoice) => (
                         <NavLink
                             style={({ isActive }) => {
                                 return {
@@ -122,9 +102,4 @@ function Invoice() {
             <p>Due Date: {invoice.due}</p>
         </main>
     )
-}
-
-function QueryNavLink({to, ...props}) {
-    let location = useLocation();
-    return <NavLink to={to + location.search} {...props}/>
 }
