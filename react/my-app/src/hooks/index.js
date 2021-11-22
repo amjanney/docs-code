@@ -1,22 +1,32 @@
-// 业务逻辑与UI分离,逻辑单独封住一个hook
+/**
+ 
+## useReducer
 
-import React, { useState } from 'react';
+*/
 
-function Example() {
-  const [count, setCount] = useState(0);
-  return (
-    <div onClick={() => setCount(count + 1)}>子组件的count值：{count}</div>
-  );
+import React, { useState, useReducer } from 'react';
+
+const initialState = { count: 0 };
+function reducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return { count: state.count + 1 };
+    case 'decrement':
+      return { count: state.count - 1 };
+    default:
+      throw new Error();
+  }
 }
 
-class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <Example />
-      </div>
-    );
-  }
+function App() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  return (
+    <div>
+      Count: {state.count}
+      <button onClick={() => dispatch({ type: 'decrement' })}>-</button>
+      <button onClick={() => dispatch({ type: 'increment' })}>+</button>
+    </div>
+  );
 }
 
 export default App;
