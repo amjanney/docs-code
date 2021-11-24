@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
 import './index.css';
 // import App from './App';
 // import Game from './main-concepts/game';
@@ -23,15 +25,34 @@ import './index.css';
 // import App from './advanced-guides/render-props/MouseTracker';
 // import App from './advanced-guides/render-props/MouseTracker3';
 // import App from './hooks';
-import App from './router'
-import { BrowserRouter } from "react-router-dom";
+import App from './redux/counter';
+// import reducer from './redux/counter/reducer';
+// import App from './router'
+// import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
+
+// router
+// ReactDOM.render(
+//   <BrowserRouter>
+//     <Counter />
+//   </BrowserRouter>,
+//   document.getElementById('root')
+// );
+
+// const stroe = createStore(reducer)
+// // redux
+// ReactDOM.render(
+//   <Provider stroe={stroe}>
+//     <App />
+//   </Provider>,
+//   document.getElementById('root')
+// );
+
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <App />,
   document.getElementById('root')
-);
+)
+
 
 // function Welcome(props) {
 //   return <h1>hello, {props.name}</h1>;
