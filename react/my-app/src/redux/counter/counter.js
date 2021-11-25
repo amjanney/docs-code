@@ -1,49 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from 'react-redux';
 
-class Counter extends React.Component {
 
-    incrementIfOdd() {
-        if (this.props.value % 2 !== 0) {
-          this.props.onIncrement()
-        }
-      }
-      incrementAsync() {
-        setTimeout(this.props.onIncrement, 1000)
-      }
-    render () {
-        const { value, onIncrement, onDecrement } = this.props
-        return (
-            <p>
-                Clicked: {value} times
-                {' '}
-                <button onClick={onIncrement}>
-                +
-                </button>
-                {' '}
-                <button onClick={onDecrement}>
-                -
-                </button>
-                {' '}
-                <button onClick={this.incrementIfOdd.bind(this)}>
-                Increment if odd
-                </button>
-                {' '}
-                <button onClick={this.incrementAsync.bind(this)}>
-                Increment async
-                </button>
-            </p>
-        )
-    }
+import {
+    decrement,
+    increment,
+    incrementByAmount,
+    incrementAsync,
+    selectCount,
+  } from './counterSlice';
+
+function Counter() {
+    const count = useSelector(selectCount)
+    const dispatch = useDispatch()
+    const [incrementAmount, setIncrementAmount] = useState('1');
+    return (
+        <div>
+            <div>
+                <button onClick={() => dispatch(increment())}>+</button>
+                <span>{count}</span>
+                <button onClick={() => dispatch(decrement())}>-</button>
+            </div>
+            <div>
+                <input value={incrementAmount} onChange={(e) => setIncrementAmount(e.target.value)}/>
+                <button onClick={() => dispatch(incrementByAmount(Number(incrementAmount) || 0))}>Add Amount</button>
+                <button onClick={() => dispatch(incrementAsync(Number(incrementAmount) || 0))}>Add Async</button>
+            </div>
+        </div>
+    )
 }
 
-export default class App extends React.Component {
-    render() {
-        return (
-            <Counter 
-                value={store.getState()}
-                onIncrement={() => store.dispatch({ type: 'INCREMENT' })}
-                onDecrement={() => store.dispatch({ type: 'DECREMENT' })}
-            />
-        )
-    }
+export default function  App() {
+    return <Counter />
 }
