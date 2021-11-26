@@ -1,52 +1,58 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { nanoid } from '@reduxjs/toolkit'
+import { useDispatch, useSelector } from 'react-redux'
 import { postAdded } from './postsSlice';
 
 export const AddPostForm = () => {
+
+  // 变量
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
+  const [userId, setuserId] = useState('')
+  const users = useSelector(state => state.users);
+  const canSave = Boolean(title) && Boolean(content) && Boolean(userId)
 
-  const dispatch = useDispatch()
-
+  // 方法
+  const dispatch = useDispatch()  
   const onTitleChanged = e => setTitle(e.target.value)
   const onContentChanged = e => setContent(e.target.value)
+  const onAuthorChanged = e => setuserId(e.target.value)
 
   const onSavePostClicked = () => {
-    if(title && content) {
-      dispatch(postAdded({
-        id: nanoid(),
-        title,
-        content
-      }))
+    if(title && content && userId) {
+      dispatch(postAdded(title, content, userId))
       setTitle('')
       setContent('')
     }
   }
+  // UI
+  const useOptions = users.map(user => (
+    <option key={user.id} value={user.id}>{user.name}</option>
+  ))
   return (
     <section>
-      <h2>添加新帖子</h2>
+      <h2>Add a New Post</h2>
       <form>
-        <h2 htmlFor="postTitle">Post Title:</h2>
-        <span className="input-affix-wrapper">
-          <input
-            type="text"
-            id="postTitle"
-            name="postTitle"
-            value={title}
-            onChange={onTitleChanged}
-          />
-        </span>
-        <h2 htmlFor="postContent">Content:</h2>
-        <span className="input-affix-wrapper">
-          <textarea
-            id="postContent"
-            name="postContent"
-            value={content}
-            onChange={onContentChanged}
-          />
-        </span>
-        <button className="button" type="button" onClick={onSavePostClicked}>保存帖子</button>
+        <label htmlFor="postTitle">Post Title:</label>
+        <input
+          type="text"
+          id="postTitle"
+          name="postTitle"
+          value={title}
+          onChange={onTitleChanged}
+        />
+        <label htmlFor="postAuthor">Author:</label>
+        <select value={userId} id="postAuthor" onChange={onAuthorChanged}>
+          <option value=""></option>
+          {useOptions}
+        </select>
+        <label htmlFor="postContent">Content:</label>
+        <textarea
+          id="postContent"
+          name="postContent"
+          value={content}
+          onChange={onContentChanged}
+        />
+        <button className="button" type="button" onClick={onSavePostClicked} disabled={!canSave}>Save Post</button>
       </form>
     </section>
   )

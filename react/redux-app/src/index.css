@@ -113,7 +113,7 @@ section h1 {
 }
 
 .post-excerpt {
-  padding: 0.25rem 0.25rem;
+  padding: 0.5rem 0.5rem;
   border: 1px solid rgb(177, 174, 174);
   border-radius: 7px;
 }
@@ -272,27 +272,3 @@ button.reaction-button {
   background-color: rgba(29, 161, 242, 0.1);
 }
 
-input, textarea {
-  padding: 0;
-  border: none;
-  outline: none;
-  width: 100%;
-}
-
-.input-affix-wrapper {
-  min-width: 0;
-  color: #000000d9;
-  font-size: 14px;
-  line-height: 1.5715;
-  background-color: #fff;
-  background-image: none;
-  transition: all .3s;
-  display: block;
-  padding: 0.25rem 0.25rem;
-  border: 1px solid rgb(177, 174, 174);
-  border-radius: 7px;
-}
-
-.button {
-  margin-top: 15px;
-}
