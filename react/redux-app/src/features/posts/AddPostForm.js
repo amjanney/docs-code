@@ -10,10 +10,9 @@ export const AddPostForm = () => {
   const [userId, setuserId] = useState('')
   const users = useSelector(state => state.users);
   const canSave = Boolean(title) && Boolean(content) && Boolean(userId)
-
   // 方法
   const dispatch = useDispatch()  
-  const onTitleChanged = e => setTitle(e.target.value)
+  // const onTitleChanged = e => setTitle(e.target.value)
   const onContentChanged = e => setContent(e.target.value)
   const onAuthorChanged = e => setuserId(e.target.value)
 
@@ -24,6 +23,17 @@ export const AddPostForm = () => {
       setContent('')
     }
   }
+
+  const handleKeyPress = (event) => {
+    const invalidChars = ['-', '+', 'e', '.', 'E']
+    if(invalidChars.indexOf(event.key) !== -1){
+       event.preventDefault()
+    } else {
+      setTitle(event.target.value.replace(/\D+/g,''))
+      console.log(event);
+    }
+ }
+
   // UI
   const useOptions = users.map(user => (
     <option key={user.id} value={user.id}>{user.name}</option>
@@ -34,11 +44,14 @@ export const AddPostForm = () => {
       <form>
         <label htmlFor="postTitle">Post Title:</label>
         <input
-          type="text"
+          type="tel"
           id="postTitle"
           name="postTitle"
           value={title}
-          onChange={onTitleChanged}
+          min={0}
+          max={10}
+          // onChange={onTitleChanged}
+          onChange={handleKeyPress}
         />
         <label htmlFor="postAuthor">Author:</label>
         <select value={userId} id="postAuthor" onChange={onAuthorChanged}>
