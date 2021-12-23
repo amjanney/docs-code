@@ -24,8 +24,10 @@ import './index.css';
 // import App from './advanced-guides/render-props/MouseTracker';
 // import App from './advanced-guides/render-props/MouseTracker3';
 // import App from './hooks';
-import App from './redux/counter/counter';
-import store from './redux/counter/store';
+import App from './address';
+
+// import App from './redux/counter/counter';
+// import store from './redux/counter/store';
 // import reducer from './redux/counter/reducer';
 // import App from './router'
 // import { BrowserRouter } from "react-router-dom";
@@ -41,17 +43,17 @@ import reportWebVitals from './reportWebVitals';
 
 // const stroe = createStore(reducer)
 // // redux
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
-);
-
 // ReactDOM.render(
-//   <App />,
+//   <Provider store={store}>
+//     <App />
+//   </Provider>,
 //   document.getElementById('root')
-// )
+// );
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+)
 
 
 // function Welcome(props) {
