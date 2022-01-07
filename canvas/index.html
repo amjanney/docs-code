@@ -4,32 +4,23 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>绘制圆形头像</title>
   <style>
     canvas {
       border: 1px solid #000;
     }
   </style>
   <script>
-
-    function draw() {
-      // 画框
-      var canvas = document.getElementById('mycanvas');
-      var ctx = canvas.getContext('2d');
-      // ctx.drawImage(document.getElementById('source'), 45, 75, 100, 100, 20, 20, 120, 120)
-      // ctx.drawImage(document.getElementById('frame'), 0, 0, 150, 120);
-
-      ctx.drawImage(document.getElementById('source'), )
-      ctx.drawImage(document.getElementById('frame'), 0, 0, 150, 120);
-    }
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    var image = document.getElementById('source');
+    ctx.drawImage(image, 33, 71, 104, 124,  21, 20, 87, 104);
 
   </script>
 </head>
-<body onload="draw()">
-  <canvas id="mycanvas" width="150" height="150"></canvas>
-  <div style="display:none;">
-    <img id="source" src="https://mdn.mozillademos.org/files/5399/gallery_1.jpg" width="300" height="227">
-    <img id="frame" src="https://mdn.mozillademos.org/files/242/Canvas_picture_frame.png" width="132" height="150">
-  </div>
+<body>
+  <canvas id="canvas"></canvas>
+  <img id="source" src="https://mdn.mozillademos.org/files/5397/rhino.jpg"
+      width="300" height="227" />
 </body>
 </html>
