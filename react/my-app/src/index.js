@@ -24,7 +24,9 @@ import './index.css';
 // import App from './advanced-guides/render-props/MouseTracker';
 // import App from './advanced-guides/render-props/MouseTracker3';
 // import App from './hooks';
-import App from './address';
+// import App from './address';
+import App from './dumi-ui';
+
 
 // import App from './redux/counter/counter';
 // import store from './redux/counter/store';
