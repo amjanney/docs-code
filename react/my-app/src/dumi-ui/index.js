@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, Block, Demo } from 'dumi-ui-test-site';
+// import { Button, Block, Demo } from 'dumi-ui-test-site';
+import { Button, Block, Demo } from '@xiumu/wood-ui';
 
 export default function App() {
   return (
