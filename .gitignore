@@ -21,6 +21,7 @@ bin-release/
 
 # dependencies
 node_modules/
+yarn.lock
 /.pnp
 .pnp.js
 
