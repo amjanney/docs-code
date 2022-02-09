@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>绘制圆形头像</title>
+  <style>
+    canvas {
+      border: 1px solid #000;
+    }
+  </style>
+  <script>
+    function draw() {
+      var canvas = document.getElementById('mycanvas');
+      var img = new Image();
+      img.src = './border2.png';
+      img.onload = function() {
+        if (canvas.getContext) {
+          var ctx = canvas.getContext('2d');
+          ctx.beginPath(); //开始绘制  
+          ctx.arc(75, 75, 75, 0, 2 * Math.PI, false)
+          ctx.stroke();
+          ctx.clip();
+          // ctx.drawImage(img, 0, 0, 150, 150)
+          ctx.drawImage(img, 0, 0, 150, 150)
+          ctx.restore();
+          ctx.draw()
+        }
+      }
+    }
+  </script>
+</head>
+<body onload="draw()">
+  <canvas id="mycanvas" width="150" height="150">current stock price: $3.15 +0.15</canvas>
+</body>
+</html>
