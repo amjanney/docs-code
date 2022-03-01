@@ -14,16 +14,13 @@
         console.log('ajax request ' + content);
       }
 
-      function throttle(fn, wait) {
-        let curTime = Date.now();
-        return function () {
-          let context = this;
-          let args = arguments;
+      function throttle(fn, delay) {
+        let preTime = 0;
+        return function (...args) {
           let nowTime = Date.now();
-          console.log(nowTime - curTime);
-          if (nowTime - curTime >= wait) {
-            curTime = Date.now();
-            fn.apply(context, args);
+          if (nowTime - preTime >= delay) {
+            preTime = Date.now();
+            fn.apply(this, args);
           }
         };
       }
