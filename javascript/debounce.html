@@ -9,27 +9,27 @@
   <body>
     debounce:<input id="debounce" type="text" />
     <script>
-      //模拟一段ajax请求
-      function ajax(content) {
-        console.log('ajax request ' + content);
+      // 模拟一段ajax请求
+      function ajax(content, value) {
+        console.log('ajax request ' + content, value);
       }
 
-      function debounce(fun, delay) {
-        return function (args) {
-          let that = this;
-          let _args = args;
-          clearTimeout(fun.id);
-          fun.id = setTimeout(function () {
-            fun.call(that, _args);
+      function debounce(fn, delay) {
+        let timer = null
+        return function (...args) {
+          if (timer) clearTimeout(timer);
+          timer = setTimeout(() => {
+            console.log(args);
+            fn.apply(this, args)
           }, delay);
-        };
+        }
       }
 
       let inputa = document.getElementById('debounce');
       let myDebounce = debounce(ajax, 500);
       inputa.addEventListener('keyup', function (e) {
         // ajax(e.target.value);
-        myDebounce(e.target.value);
+        myDebounce(e.target.value, 121312);
       });
     </script>
   </body>

@@ -9,7 +9,6 @@
   <body>
     throttle:<input id="throttle" type="text" />
     <script>
-      //模拟一段ajax请求
       function ajax(content) {
         console.log('ajax request ' + content);
       }
@@ -25,10 +24,8 @@
         };
       }
 
-      let inputa = document.getElementById('throttle');
       let mythrottle = throttle(ajax, 500);
-      inputa.addEventListener('keyup', function (e) {
-        // ajax(e.target.value);
+      document.getElementById('throttle').addEventListener('keyup', function (e) {
         mythrottle(e.target.value);
       });
     </script>
