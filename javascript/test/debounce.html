@@ -1,37 +1,46 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-03-01 22:31:22
+ * @LastEditTime: 2022-03-01 22:54:38
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /docs-code/javascript/test/debounce.html
+-->
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  debounce: <input id="debounce" type="text"/>
-
-  <script>
-    // 闭包，高阶函数传传参，定时器执行函数，
-
-    function debounce(fn, delay) {
-      let timer = null
-      return function (...args) {
-        if (timer) clearTimeout(timer);
-        timer = setTimeout(() => {
-          fn.apply(this, args)// fn dosomething
-        }, delay);
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    //
+    <input type="text" id="dobuounce" />
+    <script>
+      function debounce(fn, delay) {
+        let timer = null;
+        return function (...args) {
+          if (timer) clearTimeout(timer);
+          timer = setTimeout(() => {
+            fn.apply(this, args);
+          }, delay);
+        };
       }
-    }
 
+      function doSomeThing(value) {
+        console.log('value', value);
+      }
 
-    function doSomething(value) {
-      console.log('在这里做一些事情:', value);
-    }
+      let myDebounce = debounce(doSomeThing, 1000);
 
-    let myDebounce = debounce(doSomething, 300);
-    document.getElementById('debounce').addEventListener('keyup', function(e) {
-      myDebounce(e.target.value);
-    })
-
-  </script>
-</body>
+      document
+        .getElementById('dobuounce')
+        .addEventListener('keyup', function (e) {
+          // console.log(e.target.value);
+          myDebounce(e.target.value);
+        });
+    </script>
+  </body>
 </html>

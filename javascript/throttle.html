@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-11-27 13:49:11
+ * @LastEditTime: 2022-03-01 23:02:25
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /docs-code/javascript/throttle.html
+-->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,19 +21,19 @@
         console.log('ajax request ' + content);
       }
 
-      function throttle(fn, delay) {
-        let preTime = 0;
+      function throttle(fn, wait) {
+        let curTime = 0;
         return function (...args) {
           let nowTime = Date.now();
-          if (nowTime - preTime >= delay) {
-            preTime = Date.now();
+          if (nowTime - curTime >= wait) {
             fn.apply(this, args);
+            curTime = Date.now();
           }
         };
       }
 
       let mythrottle = throttle(ajax, 500);
-      document.getElementById('throttle').addEventListener('keyup', function (e) {
+      inputa.addEventListener('keyup', function (e) {
         mythrottle(e.target.value);
       });
     </script>
