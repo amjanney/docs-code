@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let arr = [
+  {
+    sendMsgTime: 1000,
+    roleName: '身份',
+    nickName: '昵称',
+    content: '聊天内容'
+  },
+  {
+    sendMsgTime: 1500,
+    roleName: '身份',
+    nickName: '昵称',
+    content: '聊天内容'
+  },
+  {
+    sendMsgTime: 2000,
+    roleName: '身份',
+    nickName: '昵称',
+    content: '聊天内容'
+  },
+  {
+    sendMsgTime: 3000,
+    roleName: '身份',
+    nickName: '昵称',
+    content: '聊天内容'
+  },
+  {
+    sendMsgTime: 4000,
+    roleName: '身份',
+    nickName: '昵称',
+    content: '聊天内容'
+  },
+  {
+    sendMsgTime: 4000,
+    roleName: '身份',
+    nickName: '昵称',
+    content: '聊天内容'
+  },
+  {
+    sendMsgTime: 4000,
+    roleName: '身份',
+    nickName: '昵称',
+    content: '聊天内容'
+  },
+  {
+    sendMsgTime: 5000,
+    roleName: '身份',
+    nickName: '昵称',
+    content: '聊天内容'
+  },
+  {
+    sendMsgTime: 6000,
+    roleName: '身份',
+    nickName: '昵称',
+    content: '聊天内容'
+  },
+  {
+    sendMsgTime: 7000,
+    roleName: '身份',
+    nickName: '昵称',
+    content: '聊天内容'
+  },
+  {
+    sendMsgTime: 8000,
+    roleName: '身份',
+    nickName: '昵称',
+    content: '聊天内容'
+  }
+];
+const startTime = 3000;
+
+// 1.过滤掉所有过期的消息
+const newArr = arr.filter((item) => {
+  console.log(item.sendMsgTime >= startTime);
+  return item.sendMsgTime >= startTime
+})
+
+console.log('过滤掉所有过期的消息', newArr);
+
+// 2.对大数组进行分隔成小数组，这个数组中的数据都是未过期的消息
+function group(list, splitNum) {
+  let index = 0;
+  let newArray = [];
+  while(index < list.length) {
+      newArray.push(list.slice(index, index += splitNum));
+  }
+  return newArray;
+}
+
+// 生成一个二维数组
+const newList = group(newArr, 3);
+
+// console.log(newList);
+
+// 3.循环这个二维数组，生成一个对象
+let obj = {};
+for(let i = 0; i < newList.length; i++) {
+  // 取二维数组[i][0].sendMsgTime
+  obj[newList[i][0].sendMsgTime] = newList[i];
+}
+
+console.log('二维数组生成的对象', obj);
+
+// 启动定时器的时候
+
+// 4.循环找到时间对应的片段
+let sendList = [];
+Object.keys(obj).forEach((key) => {
+  console.log(obj[key].length);
+
+  const startTime = obj[key][0].sendMsgTime;
+  const endTime = obj[key][obj[key].length - 1].sendMsgTime;
+  console.log(startTime, endTime);
+  if (startTime === Number(key)) {
+    sendList = obj[key];
+  }
+})
+
+// console.log(sendList);
+
+
+// 5.从切割的分片中拿到数据，找到需要发送的，发送
+let sendMessagelist = [];
+for(let i = 0; i < sendList.length; i++) {
+  if (sendList[i].sendMsgTime === startTime) {
+    sendMessagelist.push(sendList[i])
+  }
+}
+
+console.log('sendMessagelist', sendMessagelist);
+
+  </script>
+</body>
+</html>
