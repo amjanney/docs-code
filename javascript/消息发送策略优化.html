@@ -2,7 +2,7 @@
  * @Author: guojianli02@kaikeba.com
  * @Date: 2022-04-16 15:48:13
  * @LastEditors: guojianli02@kaikeba.com
- * @LastEditTime: 2022-04-16 16:58:23
+ * @LastEditTime: 2022-04-18 11:57:31
  * @Description: 
 -->
 
@@ -23,20 +23,58 @@
      * 3.每次并发发送不超过6条
      */
 
-    const newList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    const list = [];
+    // const newList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    // const list = [];
 
-    for(let i = 0, len = newList.length; i < len; i++) {
-      list.push(newList[i])
+    // for(let i = 0, len = newList.length; i < len; i++) {
+    //   list.push(newList[i])
+    //   newList.splice(i, 1)
+    //   i--;
+    //   if(list.length > 4) {
+    //       break;
+    //   }
+    // }
+
+    // console.log('发送的消息', list);
+    // console.log('原始的消息', newList);
+
+// 模拟原始消息列表，
+const newList = new Array(10000000).fill(1).map((item, index) => {
+  return {
+    time: (index + 1) * 1000,       // 消息发送的时间，一秒一个
+    content: `这是第${index + 1}s发送的消息` // 消息发送的内容
+  }
+})
+
+console.log(newList);
+
+// 发送的消息列表
+const sendList = [];
+function getMessage(time) {
+  let j = 0; // 循环次数
+  for(let i = 0, len = newList.length; i < len; i++) {
+    const item = newList[i];
+    j++;
+    if(item.time === time) {
+      sendList.push(newList[i])
       newList.splice(i, 1)
       i--;
-      if(list.length > 4) {
-          break;
-      }
+      break;
     }
+  }
+  console.log('播放进度', time)
+  console.log('循环的次数', j);
+  console.log('接收的消息的长度', sendList.length, sendList);
+  console.log('原始消息的长度', newList.length);
+  
+}
 
-    console.log('发送的消息', list);
-    console.log('原始的消息', newList);
+let time = 0;
+// 定时器,1s触发一次
+setInterval(() => {
+  time += 1000;
+  getMessage(time);
+}, 1000)
 
   </script>
 </body>
