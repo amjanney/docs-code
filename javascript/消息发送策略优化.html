@@ -2,7 +2,7 @@
  * @Author: guojianli02@kaikeba.com
  * @Date: 2022-04-16 15:48:13
  * @LastEditors: guojianli02@kaikeba.com
- * @LastEditTime: 2022-04-18 11:57:31
+ * @LastEditTime: 2022-04-20 15:26:07
  * @Description: 
 -->
 
@@ -59,6 +59,8 @@ function getMessage(time) {
       sendList.push(newList[i])
       newList.splice(i, 1)
       i--;
+      
+    } else if (sendList.length > 0) {
       break;
     }
   }
