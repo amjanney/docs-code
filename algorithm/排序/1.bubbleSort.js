@@ -2,7 +2,7 @@
  * @Author: xiumubai 1547702880@qq.com
  * @Date: 2022-05-28 17:22:28
  * @LastEditors: xiumubai 1547702880@qq.com
- * @LastEditTime: 2022-05-28 17:56:10
+ * @LastEditTime: 2022-05-28 18:36:42
  * @FilePath: /docs-code/javascript/数据结构与算法/排序/1.bubbleSort.js
  * @Description: 冒泡排序
  */
@@ -32,7 +32,7 @@ function defaultCompare(a, b) {
 function bubbleSort(array, compareFn = defaultCompare) {
   const { length } = array;
   for (let i = 0; i < length; i++) {
-    for (let j = 0; j < length - 1; j++) {
+    for (let j = 0; j < length - 1 - i; j++) {
       // 前一项比后面一项大，交换数组
       if (compareFn(array[j], array[j + 1]) === Compare.BIGGER_THAN) {
         swap(array, j, j + 1);

@@ -2,7 +2,7 @@
  * @Author: xiumubai 1547702880@qq.com
  * @Date: 2022-05-28 22:22:05
  * @LastEditors: xiumubai 1547702880@qq.com
- * @LastEditTime: 2022-05-28 23:23:02
+ * @LastEditTime: 2022-05-28 23:39:43
  * @FilePath: /docs-code/javascript/数据结构与算法/排序/4.mergeSort.js
  * @Description: 归并排序
  */
