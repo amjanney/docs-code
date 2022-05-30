@@ -2,7 +2,7 @@
  * @Author: xiumubai 1547702880@qq.com
  * @Date: 2022-05-28 16:51:36
  * @LastEditors: xiumubai 1547702880@qq.com
- * @LastEditTime: 2022-05-30 00:40:10
+ * @LastEditTime: 2022-05-31 01:04:33
  * @FilePath: /docs-code/javascript/数据结构与算法/查找/binarySearch.js
  * @Description: 二分查找
  */
@@ -83,5 +83,5 @@ function lesserOrEquals(a, b, compareFn) {
 
 const arr = [5, 4, 5, 3, 6, 4, 2, 1];
 console.log('未排序的数组', arr);
-const num = binnarySearch(arr, 6);
+const num = binnarySearch(arr, 2);
 console.log('查找到的数据', num);
